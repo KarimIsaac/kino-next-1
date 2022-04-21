@@ -6,7 +6,6 @@ export default async function handler(req, res) {
     try {
         connectDb().then(async () => {
             const { id } = req.query;
-            console.log(id);
             const screenings = await Screenings.find({ id: id });
             if (screenings.length > 0) {
                 res.status(200).json(screenings);
