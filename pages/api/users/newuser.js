@@ -4,12 +4,7 @@ import User from "../../../DB/models/users";
 // Route for creating a new user /api/users/newuser.
 export default function userHandler(req, res) {
     if (req.method === "POST") {
-        if (
-            req.body.name.length > 3 &&
-            req.body.phone.length > 10 &&
-            req.body.email.length > 6 &&
-            req.body.password.length > 6
-        ) {
+        if (req.body != null) {
             // Look in the database if email is already in use.
             connectDb().then(async () => {
                 const user = await User.findOne({ email: req.body.email });
