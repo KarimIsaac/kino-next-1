@@ -13,6 +13,7 @@ export default function UserLoginForm() {
   useEffect(() => {
     checkInput(userName, userNameEle);
   }, [userName]);
+
   useEffect(() => {
     checkInput(password, passwordEle);
   }, [password]);
@@ -36,7 +37,12 @@ export default function UserLoginForm() {
         _ref={userNameEle}
         _setState={setUserName}
       />
-      <Input _label={"password"} _ref={passwordEle} _setState={setPassword} />
+      <Input
+        _label={"password"}
+        _type="password"
+        _ref={passwordEle}
+        _setState={setPassword}
+      />
 
       <button ref={btnEle} onClick={(e) => handleSubmit(e)} type="submit">
         login
