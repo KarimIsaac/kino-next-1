@@ -6,7 +6,7 @@ import Banner from "../components/header/Banner";
 import styles from "../styles/Home.module.css";
 import UserLoginForm from "../components/userLogin/LogInForm";
 
-export default function Movies() {
+export default function LoginPage() {
   return (
     <section className="login-section">
       <Head>
