@@ -2,6 +2,7 @@ export default function UserInput({
   _label,
   _inputId,
   _type,
+  _minLgth,
   _ref,
   _setState,
 }) {
@@ -15,8 +16,10 @@ export default function UserInput({
       <input
         id={_inputId}
         type={_type}
+        minLength={_minLgth}
         ref={_ref}
         onChange={(e) => onChangeFunc(e)}
+        required
       />
     </div>
   );
@@ -25,4 +28,5 @@ export default function UserInput({
 UserInput.defaultProps = {
   _label: "Label:",
   _type: "text",
+  _minLgth: 1,
 };
