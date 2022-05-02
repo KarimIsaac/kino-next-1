@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useContext } from "react";
+import { LoginContext } from "../contexts/loginContext.js";
 //components
 import Input from "./UserInput";
 
@@ -6,9 +7,10 @@ export default function UserLoginForm() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
+  const { login, setLogin } = useContext(LoginContext);
+
   async function handleSubmit(e) {
     e.preventDefault();
-
     const data = { userName, password };
     const res = await fetch("/api/login", {
       method: "POST",
@@ -21,9 +23,10 @@ export default function UserLoginForm() {
     const status = await res.json();
 
     if (status) {
-      alert("you are signed in");
-    } else {
-      alert("check username or password");
+      setLogin(status);
+    } 
+    else {
+      setLogin(status);
     }
   }
 
