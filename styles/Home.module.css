@@ -48,6 +48,7 @@
 .poster{
   background-size: cover;
   height: 200px;
+  cursor: pointer;
 }
 
 .title {
