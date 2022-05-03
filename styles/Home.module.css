@@ -89,7 +89,7 @@
 .right-container-content-calendar {
   margin-bottom: 13px;
   width: 315px;
-  height: 540px;
+  min-height: 540px;
   background-color: #E7D0C0;
 }
 
