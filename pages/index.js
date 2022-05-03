@@ -7,7 +7,16 @@ import Banner from "../components/header/Banner";
 import LatestMovies from "../components/LatestMovies";
 import RightSidebar from "../components/RightSidebar";
 
-export default function Home() {
+import connectDb from "../DB/connectDb";
+import Movies from "../DB/models/movies";
+
+export async function getServerSideProps() {
+  await connectDb();
+  const movies = await Movies.find({}, { _id: 0 }).lean();
+  return { props: { movies } };
+}
+
+export default function Home({ movies }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -32,7 +41,7 @@ export default function Home() {
           <div className={styles["main-container-content-article-small"]}>
             <p>AKTUELLA FILMER</p>
           </div>
-          <LatestMovies />
+          <LatestMovies movies={movies} />
         </div>
         <div className={styles["right-container"]}>
           <RightSidebar />
