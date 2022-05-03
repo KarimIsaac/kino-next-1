@@ -40,6 +40,21 @@
   width: 750px;
 }
 
+.movies-list{
+  padding: 0;
+  list-style-type: none;
+}
+
+.poster{
+  background-size: cover;
+  height: 200px;
+}
+
+.title {
+  background-image: linear-gradient(to right, rgba(245, 179, 80), rgba(255,0,0,0));
+  color: black;
+}
+
 .right-container {
   order: 3;
   width: 100%;

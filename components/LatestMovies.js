@@ -1,14 +1,17 @@
-import Image from "next/image";
-import latestMovie from "/public/inIDimman.jpg";
 import styles from "../styles/Home.module.css";
 
-export default function LatestMovies() {
-  return (
-    <div className={styles["main-container-content-movie-comingsoon"]}>
-      <Image src={latestMovie} alt="Latest movie" />
-      <Image src={latestMovie} alt="Latest movie" />
-      <Image src={latestMovie} alt="Latest movie" />
-      <Image src={latestMovie} alt="Latest movie" />
-    </div>
-  );
+export default function LatestMovies({ movies }) {
+  const moviesList = movies.map((movie) => {
+    return (
+      <li key={movie.id}>
+        <div
+          className={styles["poster"]}
+          style={{ backgroundImage: `url("${movie.img}")` }}
+        >
+          <h1 className={styles["title"]}>{movie.title}</h1>
+        </div>
+      </li>
+    );
+  });
+  return <ul className={styles["movies-list"]}>{moviesList}</ul>;
 }
