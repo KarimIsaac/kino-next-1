@@ -9,14 +9,16 @@ import RightSidebar from "../components/RightSidebar";
 
 import connectDb from "../DB/connectDb";
 import Movies from "../DB/models/movies";
+import Screenings from "../DB/models/screenings";
 
 export async function getServerSideProps() {
   await connectDb();
   const movies = await Movies.find({}, { _id: 0 }).lean();
-  return { props: { movies } };
+  const screenings = await Screenings.find({}, { _id: 0 }).lean();
+  return { props: { movies, screenings } };
 }
 
-export default function MoviesPage({ movies }) {
+export default function MoviesPage({ movies, screenings }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -44,7 +46,7 @@ export default function MoviesPage({ movies }) {
           <LatestMovies movies={movies} />
         </div>
         <div className={styles["right-container"]}>
-          <RightSidebar />
+          <RightSidebar screenings={screenings} />
         </div>
       </main>
 

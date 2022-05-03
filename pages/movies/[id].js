@@ -9,14 +9,18 @@ import RightSidebar from "../../components/RightSidebar";
 
 import connectDb from "../../DB/connectDb";
 import Movies from "../../DB/models/movies";
+import Screenings from "../../DB/models/screenings";
 
 export async function getServerSideProps(context) {
   await connectDb();
+  const movieID = JSON.parse(`{ "movieid":${context.query.id} }`);
+
   const movie = await Movies.findOne(context.query, { _id: 0 }).lean();
-  return { props: { movie } };
+  const screenings = await Screenings.find(movieID, { _id: 0 }).lean();
+  return { props: { movie, screenings } };
 }
 
-export default function Post({ movie }) {
+export default function Post({ movie, screenings }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -65,7 +69,7 @@ export default function Post({ movie }) {
           </div>
         </div>
         <div className={styles["right-container"]}>
-          <RightSidebar />
+          <RightSidebar screenings={screenings} />
         </div>
       </main>
 
