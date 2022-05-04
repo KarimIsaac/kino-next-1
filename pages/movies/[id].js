@@ -69,7 +69,7 @@ export default function Post({ movie, screenings }) {
           </div>
         </div>
         <div className={styles["right-container"]}>
-          <RightSidebar screenings={screenings} />
+          <RightSidebar screenings={screenings} movie={movie} />
         </div>
       </main>
 

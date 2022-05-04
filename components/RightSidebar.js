@@ -1,11 +1,26 @@
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Sidebar.module.css";
 
-export default function RightSidebar({ screenings }) {
+export default function RightSidebar({ screenings, movies, movie }) {
   const screeningsList = screenings.map((screening) => {
+    let title = "";
+    if (movie) {
+      title = movie.title;
+    }
+
+    if (movies) {
+      movies.forEach((movie) => {
+        if (movie.id === screening.movieid) {
+          title = movie.title;
+        }
+      });
+    }
+
     return (
       <li key={screening.id}>
-        <p>{screening.date}</p>
-        <p>{screening.time}</p>
+        <p className={styles["title"]}>{title}</p>
+        <p>
+          {screening.date} kl. {screening.time}
+        </p>
       </li>
     );
   });

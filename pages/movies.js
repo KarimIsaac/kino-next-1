@@ -46,7 +46,7 @@ export default function MoviesPage({ movies, screenings }) {
           <LatestMovies movies={movies} />
         </div>
         <div className={styles["right-container"]}>
-          <RightSidebar screenings={screenings} />
+          <RightSidebar screenings={screenings} movies={movies} />
         </div>
       </main>
 
