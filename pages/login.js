@@ -11,7 +11,7 @@ export default function LoginPage() {
     <section className="login-section">
       <Head>
         <title>Kino Luleå | login</title>
-        <meta
+        <meta 
           name="description"
           content="Fictional website for cinema in Luleå"
         />
