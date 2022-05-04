@@ -3,10 +3,13 @@ import styles from "../styles/Sidebar.module.css";
 export default function RightSidebar({ screenings, movies, movie }) {
   const screeningsList = screenings.map((screening) => {
     let title = "";
+
+    // If single movie
     if (movie) {
       title = movie.title;
     }
 
+    // If all screenings
     if (movies) {
       movies.forEach((movie) => {
         if (movie.id === screening.movieid) {

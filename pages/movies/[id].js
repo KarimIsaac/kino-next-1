@@ -11,6 +11,7 @@ import connectDb from "../../DB/connectDb";
 import Movies from "../../DB/models/movies";
 import Screenings from "../../DB/models/screenings";
 
+// Get requested movie and screenings for that movie from DB
 export async function getServerSideProps(context) {
   await connectDb();
   const movieID = JSON.parse(`{ "movieid":${context.query.id} }`);

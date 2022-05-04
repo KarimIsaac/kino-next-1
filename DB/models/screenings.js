@@ -30,3 +30,5 @@ const screeningsSchema = new Schema({
 
 const Screenings = models.Screenings || model("Screenings", screeningsSchema);
 export default Screenings;
+
+// Changed to "Screenings" from "screenings" to fix error with getServerSideProps

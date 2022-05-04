@@ -3,6 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
 };
 
+// Add domain for images in DB
 module.exports = {
   nextConfig,
   images: {

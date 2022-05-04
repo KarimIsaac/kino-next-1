@@ -16,3 +16,5 @@ export const moviesSchema = new Schema({
 
 const Movies = models.Movies || model("Movies", moviesSchema);
 export default Movies;
+
+// Changed to "Movies" from "movies" to fix error with getServerSideProps

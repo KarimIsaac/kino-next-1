@@ -11,6 +11,7 @@ import connectDb from "../DB/connectDb";
 import Movies from "../DB/models/movies";
 import Screenings from "../DB/models/screenings";
 
+// Get all movies and screenings from DB
 export async function getServerSideProps() {
   await connectDb();
   const movies = await Movies.find({}, { _id: 0 }).lean();
