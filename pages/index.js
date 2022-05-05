@@ -1,6 +1,5 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-
 import Navbar from "../components/header/Navbar";
 import Logo from "../components/header/Logo";
 import Banner from "../components/header/Banner";
