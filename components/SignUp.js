@@ -31,6 +31,8 @@ export default function SignUp() {
       const data = await response.json();
       if (data.message === "User created!") {
         return alert("User created!");
+      } else if (data.message === "An account with that email is already in use!") {
+        return alert("An account with that email is already in use!");
       } else {
         return alert("Error creating user!");
       }
