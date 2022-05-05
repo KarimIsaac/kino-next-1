@@ -1,6 +1,32 @@
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Sidebar.module.css";
 
-export default function RightSidebar() {
+export default function RightSidebar({ screenings, movies, movie }) {
+  const screeningsList = screenings.map((screening) => {
+    let title = "";
+
+    // If single movie
+    if (movie) {
+      title = movie.title;
+    }
+
+    // If all screenings
+    if (movies) {
+      movies.forEach((movie) => {
+        if (movie.id === screening.movieid) {
+          title = movie.title;
+        }
+      });
+    }
+
+    return (
+      <li key={screening.id}>
+        <p className={styles["title"]}>{title}</p>
+        <p>
+          {screening.date} kl. {screening.time}
+        </p>
+      </li>
+    );
+  });
   return (
     <>
       {" "}
@@ -8,23 +34,7 @@ export default function RightSidebar() {
         <p>BILJETTER</p>
       </div>
       <div className={styles["right-container-content-calendar"]}>
-        <p className={styles["right-container-title"]}>
-          Klicka på titel för information och på tid för att boka/köpa biljetter
-        </p>
-        <div>
-          I DAG
-          <div>KINO</div>
-          <ul className={styles["list-today-films"]}>
-            <li></li>
-          </ul>
-        </div>
-        <div>
-          I MORGON
-          <div>KINO</div>
-          <ul className={styles["list-tomorrow-films"]}>
-            <li></li>
-          </ul>
-        </div>
+        <ul>{screeningsList}</ul>
       </div>
     </>
   );

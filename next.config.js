@@ -1,6 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-}
+};
 
-module.exports = nextConfig
+// Add domain for images in DB
+module.exports = {
+  nextConfig,
+  images: {
+    domains: ["xl.movieposterdb.com"],
+  },
+};

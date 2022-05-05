@@ -7,7 +7,19 @@ import Banner from "../components/header/Banner";
 import LatestMovies from "../components/LatestMovies";
 import RightSidebar from "../components/RightSidebar";
 
-export default function Movies() {
+import connectDb from "../DB/connectDb";
+import Movies from "../DB/models/movies";
+import Screenings from "../DB/models/screenings";
+
+// Get all movies and screenings from DB
+export async function getServerSideProps() {
+  await connectDb();
+  const movies = await Movies.find({}, { _id: 0 }).lean();
+  const screenings = await Screenings.find({}, { _id: 0 }).lean();
+  return { props: { movies, screenings } };
+}
+
+export default function MoviesPage({ movies, screenings }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -32,10 +44,10 @@ export default function Movies() {
           <div className={styles["main-container-content-article-small"]}>
             <p>ALLA FILMER</p>
           </div>
-          <LatestMovies />
+          <LatestMovies movies={movies} />
         </div>
         <div className={styles["right-container"]}>
-          <RightSidebar />
+          <RightSidebar screenings={screenings} movies={movies} />
         </div>
       </main>
 
