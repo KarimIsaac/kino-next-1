@@ -29,10 +29,10 @@ header {
   cursor: pointer;
 }
 
-.menu-container {
+.menu-container, 
+.menu-container > nav {
   width: 100%;
   max-width: 1100px;
-  height: 25px;
   padding-top: 1px;
   background-color: #F5B350;
   margin: 0 auto;
@@ -41,7 +41,30 @@ header {
   justify-content: space-evenly;
 }
 
-.menu-link {
+.menu-container{
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.menu-container > div{
+  width: 100%;
+  padding: 0 12%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+}
+
+.login-meny{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background-color: red;
+}
+
+.menu-link,
+.login-meny-link {
   margin: 0;
   font-size: 16px;
   letter-spacing: 1px;
@@ -50,6 +73,10 @@ header {
   border: none;
   cursor: pointer;
   text-decoration: none;
+}
+
+.login-meny-link{
+  padding: 10px;
 }
 
 .hero-ad-container {
