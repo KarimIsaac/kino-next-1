@@ -18,6 +18,10 @@ export async function getServerSideProps(context) {
 
   const movie = await Movies.findOne(context.query, { _id: 0 }).lean();
   const screenings = await Screenings.find(movieID, { _id: 0 }).lean();
+
+  if (!movie) {
+    return { notFound: true };
+  }
   return { props: { movie, screenings } };
 }
 
