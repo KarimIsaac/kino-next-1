@@ -5,6 +5,7 @@ export default function SignUp() {
   async function signUp() {
     // When the user clicks the button, check that all fields are filled in, and if so, create a new user. Otherwise, return an alert.
     if (
+      document.querySelector("#verify-password").value != document.querySelector("#password").value ||
       document.querySelector("#name").value.length < 3 ||
       document.querySelector("#phone").value.length < 10 ||
       document.querySelector("#email").value.length < 6 ||
@@ -66,13 +67,10 @@ export default function SignUp() {
     <div className={styles["main-container-signinup"]}>
       <div className={styles["main-container-signinup-content"]}>
         <input id="name" type="text" placeholder="Your full name" />
-        <br></br>
         <input id="phone" type="text" placeholder="Phone no." />
-        <br></br>
         <input id="email" type="email" placeholder="Email address" />
-        <br></br>
         <input onKeyUp={passwordStrength} id="password" type="password" placeholder="Password" />
-        <br></br>
+        <input id="verify-password" type="password" placeholder="Verify password" />
         <p id="strength-indicator">Make sure to use a strong password.</p>
         <button onClick={signUp}>Sign up</button>
       </div>
