@@ -3,7 +3,7 @@ import { useState, createContext } from "react";
 export const LoginContext = createContext({
   user: null,
   key: null,
-  sesID: null,
+  logedIn: false
 });
 
 // export function LoginProvider() {

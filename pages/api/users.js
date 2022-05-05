@@ -1,10 +1,8 @@
-// - hämta infromation alla inloggingar ifrån databasen
-// - kolla så att det stämmer överens med lösenord som skickas in
-
+//TODO: remove this api an connect to the MongoDB database at Login with ServerSideProps();
 import Cookies from "cookies";
 import { v4 as uuid_V4 } from "uuid";
 
-// ska hämtas ifrån mongodatabasen
+
 export const mockLogins = [
   { user: "marcus", password: "testPassword" },
   { user: "fredrik", password: "testPassword" },
@@ -15,7 +13,7 @@ export const mockLogins = [
       { title: "avengers" },
       { title: "avengers 2" },
       { title: "avengers 3" },
-    ],
+    ]
   },
   { user: "Ammar", password: "testPassword" },
 ];

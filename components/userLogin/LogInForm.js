@@ -15,7 +15,7 @@ export default function UserLoginForm() {
   async function handleSubmit(e) {
     e.preventDefault();
     const data = { userName, password};
-    const res = await fetch("/api/login", {
+    const res = await fetch("/api/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -23,8 +23,9 @@ export default function UserLoginForm() {
       body: JSON.stringify(data),
     });
     const Obj = await res.json() 
-    setUserObj(Obj);
+    setUserObj({...Obj, logedIn: true});
   }
+
   return (
     <form onSubmit={handleSubmit}>
       <Input _label={"User Name: "} _setState={setUserName} />
