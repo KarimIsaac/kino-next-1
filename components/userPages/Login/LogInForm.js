@@ -1,20 +1,16 @@
-import { useState, useEffect, useContext } from "react";
-import Link from "next/link";
-import { LoginContext } from "../contexts/loginContext.js";
+import { useState, useContext } from "react";
+import { LoginContext } from "../../contexts/loginContext.js";
 
-//components
 import Input from "./UserInput";
 
 export default function UserLoginForm() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-
-  const { userObj, setUserObj } = useContext(LoginContext);
-
+  const { setUserObj } = useContext(LoginContext);
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const data = { userName, password};
+    const data = { userName, password };
     const res = await fetch("/api/users", {
       method: "POST",
       headers: {
@@ -22,8 +18,8 @@ export default function UserLoginForm() {
       },
       body: JSON.stringify(data),
     });
-    const Obj = await res.json() 
-    setUserObj({...Obj, logedIn: true});
+    const Obj = await res.json();
+    setUserObj({ ...Obj, logedIn: true });
   }
 
   return (
@@ -35,14 +31,7 @@ export default function UserLoginForm() {
         _type="password"
         _setState={setPassword}
       />
-      <button
-        type="submit"
-      >
-        login
-      </button>
-      <Link href="/test">
-        <a>test page</a>
-      </Link>
+      <button type="submit">login</button>
     </form>
   );
 }
