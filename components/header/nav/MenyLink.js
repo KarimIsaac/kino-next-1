@@ -14,5 +14,4 @@ MenyLink.defaultProps = {
   _tag: "/#",
   _class: "meny-link",
   _divClass: "menu-dropdown",
-  _innerText: "menyItem",
 };
