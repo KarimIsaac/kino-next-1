@@ -19,14 +19,19 @@ export default function UserLoginForm() {
       body: JSON.stringify(data),
     });
     const Obj = await res.json();
-    setUserObj({ ...Obj, logedIn: true });
+
+    if (!Obj.err) {
+      setUserObj({ ...Obj, logedIn: true });
+    } else {
+      alert(Obj.message)
+    }
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <Input _label={"User Name: "} _setState={setUserName} />
       <Input
-        _minLgth={6}
+        _minLgth={4}
         _label={"password"}
         _type="password"
         _setState={setPassword}
