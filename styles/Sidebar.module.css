@@ -30,6 +30,28 @@
   list-style-type: none;
 }
 
+.right-container-content-calendar li {
+  font-size: 18px;
+}
+
+.screening-container {
+  outline-style: solid;
+  border-radius: 0%;
+  outline-color: #401810;
+}
+
 .title {
   font-weight: bold;
+}
+
+.screening-container-bottom {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-height: 40px;
+}
+
+.book-button {
+  background-color: #F5B350;
+  font-size: 16px;
 }

@@ -1,8 +1,19 @@
 import styles from "../styles/Sidebar.module.css";
+import Link from "next/link";
 
 export default function RightSidebar({ screenings, movies, movie }) {
   const screeningsList = screenings.map((screening) => {
     let title = "";
+    let seatsAvail = 0;
+
+    // Check available seats
+    screening.rows.forEach((row) => {
+      for (const [key, value] of Object.entries(row)) {
+        if (value === "") {
+          seatsAvail++;
+        }
+      }
+    });
 
     // If single movie
     if (movie) {
@@ -19,12 +30,20 @@ export default function RightSidebar({ screenings, movies, movie }) {
     }
 
     return (
-      <li key={screening.id}>
-        <p className={styles["title"]}>{title}</p>
-        <p>
-          {screening.date} kl. {screening.time}
-        </p>
-      </li>
+      <div className={styles["screening-container"]}>
+        <li key={screening.id}>
+          <p className={styles["title"]}>{title}</p>
+          <p>
+            {screening.date} kl. {screening.time}
+          </p>
+          <div className={styles["screening-container-bottom"]}>
+            <p>{seatsAvail} lediga stolar</p>
+            <Link href="/">
+              <button className={styles["book-button"]}>Boka nu</button>
+            </Link>
+          </div>
+        </li>
+      </div>
     );
   });
   return (
