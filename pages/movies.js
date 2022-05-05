@@ -1,7 +1,7 @@
 import Head from "next/head";
 import styles from "../styles/Movies.module.css";
 
-import Navbar from "../components/header/Navbar";
+import Navbar from "../components/header/nav/Navbar";
 import Logo from "../components/header/Logo";
 import Banner from "../components/header/Banner";
 import LatestMovies from "../components/LatestMovies";
@@ -31,14 +31,6 @@ export default function MoviesPage({ movies, screenings }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header>
-        <nav>
-          <Logo />
-          <Navbar />
-          <Banner />
-        </nav>
-      </header>
-
       <main className={styles.main}>
         <div className={styles["main-container"]}>
           <div className={styles["main-container-content-article-small"]}>
@@ -51,9 +43,6 @@ export default function MoviesPage({ movies, screenings }) {
         </div>
       </main>
 
-      <footer className="footer">
-        <p>This is the footer</p>
-      </footer>
     </div>
   );
 }
