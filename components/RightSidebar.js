@@ -20,7 +20,7 @@ export default function RightSidebar({ screenings, movies, movie }) {
       title = movie.title;
     }
 
-    // If all screenings
+    // If all movies
     if (movies) {
       movies.forEach((movie) => {
         if (movie.id === screening.movieid) {
@@ -28,10 +28,10 @@ export default function RightSidebar({ screenings, movies, movie }) {
         }
       });
     }
-
+    // Create the list of screenings
     return (
-      <div className={styles["screening-container"]}>
-        <li key={screening.id}>
+      <div className={styles["screening-container"]} key={screening.id}>
+        <li>
           <p className={styles["title"]}>{title}</p>
           <p>
             {screening.date} kl. {screening.time}
