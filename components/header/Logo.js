@@ -6,7 +6,9 @@ export default function Logo() {
   return (
     <div className="header-logo-container">
       <Link href="/">
-        <Image src={logo} alt="Kino Logo" />
+        <a>
+          <Image src={logo} alt="Kino Logo" />
+        </a>
       </Link>
     </div>
   );
