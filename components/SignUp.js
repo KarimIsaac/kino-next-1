@@ -8,17 +8,20 @@ export default function signup() {
   const [passwordStrength, setpasswordStrength] = useState("Lösenordets styrka:");
   const [isSubmit, setIsSubmit] = useState(false);
 
+  // Handles input change.
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
   };
 
+  // Handles submit.
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmit(true);
   };
 
+  // Validate form. Displays error messages.
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       postData(formValues);
@@ -55,6 +58,7 @@ export default function signup() {
     return errors;
   };
 
+  // Check password strength.
   function strengthCheck() {
     if (formValues.password < 4) {
       setpasswordStrength("Lösenordets styrka: Inte tillräcklig");
@@ -73,6 +77,7 @@ export default function signup() {
     }
   }
 
+  // Post formValues to the API /api/users/newuser.
   async function postData(formValues) {
     const response = await fetch("http://localhost:3000/api/users/newuser", {
       method: "POST",
@@ -83,6 +88,7 @@ export default function signup() {
     console.log(data);
   }
 
+  // Render the SignUp Registration form.
   return (
     <div className={styles["signup"]}>
       <form onSubmit={handleSubmit}>
