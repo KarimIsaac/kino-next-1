@@ -40,43 +40,24 @@
   width: 750px;
 }
 
+.movies-list{
+  padding: 0;
+  list-style-type: none;
+}
+
+.poster{
+  background-size: cover;
+  height: 200px;
+  cursor: pointer;
+}
+
+.title {
+  background-image: linear-gradient(to right, rgba(245, 179, 80), rgba(255,0,0,0));
+  color: black;
+}
+
 .right-container {
   order: 3;
   width: 100%;
   max-width: 315px;
-}
-
-.right-container-content-article-small {
-  margin-bottom: 13px;
-  width: 315px;
-  height: 52px;
-
-  background: #F5B350;
-  color: black;
-  text-align: center;
-  font-size: 30px;
-}
-
-.right-container-content-article-small p{
-  margin: auto;
-  padding: 4px;
-  display: flex;
-  justify-content: center;
-}
-
-.right-container-content-search input {
-  margin-bottom: 13px;
-  width: 315px;
-  height: 33px;
-}
-
-.right-container-content-calendar {
-  margin-bottom: 13px;
-  width: 315px;
-  height: 540px;
-  background-color: #E7D0C0;
-}
-
-.right-container-title {
-  margin: auto;
 }

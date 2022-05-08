@@ -1,6 +1,51 @@
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Sidebar.module.css";
+import Link from "next/link";
 
-export default function RightSidebar() {
+export default function RightSidebar({ screenings, movies, movie }) {
+  const screeningsList = screenings.map((screening) => {
+    let title = "";
+    let seatsAvail = 0;
+
+    // Check available seats
+    screening.rows.forEach((row) => {
+      for (const [key, value] of Object.entries(row)) {
+        if (value === "") {
+          seatsAvail++;
+        }
+      }
+    });
+
+    // If single movie
+    if (movie) {
+      title = movie.title;
+    }
+
+    // If all movies
+    if (movies) {
+      movies.forEach((movie) => {
+        if (movie.id === screening.movieid) {
+          title = movie.title;
+        }
+      });
+    }
+    // Create the list of screenings
+    return (
+      <div className={styles["screening-container"]} key={screening.id}>
+        <li>
+          <p className={styles["title"]}>{title}</p>
+          <p>
+            {screening.date} kl. {screening.time}
+          </p>
+          <div className={styles["screening-container-bottom"]}>
+            <p>{seatsAvail} lediga stolar</p>
+            <Link href="/">
+              <button className={styles["book-button"]}>Boka nu</button>
+            </Link>
+          </div>
+        </li>
+      </div>
+    );
+  });
   return (
     <>
       {" "}
@@ -8,23 +53,7 @@ export default function RightSidebar() {
         <p>BILJETTER</p>
       </div>
       <div className={styles["right-container-content-calendar"]}>
-        <p className={styles["right-container-title"]}>
-          Klicka på titel för information och på tid för att boka/köpa biljetter
-        </p>
-        <div>
-          I DAG
-          <div>KINO</div>
-          <ul className={styles["list-today-films"]}>
-            <li></li>
-          </ul>
-        </div>
-        <div>
-          I MORGON
-          <div>KINO</div>
-          <ul className={styles["list-tomorrow-films"]}>
-            <li></li>
-          </ul>
-        </div>
+        <ul>{screeningsList}</ul>
       </div>
     </>
   );
