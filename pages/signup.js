@@ -5,7 +5,7 @@ import Navbar from "../components/header/Navbar";
 import Logo from "../components/header/Logo";
 import Banner from "../components/header/Banner";
 import RightSidebar from "../components/RightSidebar";
-import SignUp from "../components/SignUp";
+import SignUp from "../components/Signup";
 
 export default function Home() {
   return (
@@ -30,13 +30,13 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles["main-container"]}>
           <div className={styles["main-container-content-article-small"]}>
-            <p>CREATE AN ACCOUNT</p>
+            <p>SKAPA ETT KONTO</p>
           </div>
             <SignUp />
         </div>
-        <div className={styles["right-container"]}>
+        {/* <div className={styles["right-container"]}>
           <RightSidebar />
-        </div>
+        </div> */}
       </main>
 
       <footer className="footer">
