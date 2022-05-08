@@ -1,9 +1,8 @@
 import { Schema, model, models } from "mongoose";
 
 const userSchema = new Schema({
-    id: Number,
     name: String,
-    phone: Number,
+    phone: String,
     email: String,
     password: String,
     token: String,
@@ -11,5 +10,5 @@ const userSchema = new Schema({
     registered: Date
 });
 
-const User = models.User || model("user", userSchema);
+const User = models.User || model("User", userSchema);
 export default User;
