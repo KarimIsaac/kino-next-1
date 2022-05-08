@@ -21,7 +21,7 @@ export default function signup() {
     setIsSubmit(true);
   };
 
-  // Validate form. Displays error messages.
+  // Validate form. Displays error messages. If no errors on submit true, call postData().
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       postData(formValues);
@@ -85,7 +85,12 @@ export default function signup() {
       body: JSON.stringify(formValues),
     });
     const data = await response.json();
-    console.log(data);
+    // if data.message === "User created" redirect to /login.
+    if (data.message === "User created") {
+      window.location.href = "/login";
+    } else {
+      alert(data.message);
+    }
   }
 
   // Render the SignUp Registration form.
