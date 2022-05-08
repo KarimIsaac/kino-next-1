@@ -1,81 +1,150 @@
-import styles from "../styles/signinup.module.css";
+import styles from "../styles/SignUp.module.css";
+import { useState, useEffect } from "react";
 
-export default function SignUp() {
+export default function signup() {
+  const initialValues = { name: "", phone: "", email: "", password: "", verifyPassword: "" };
+  const [formValues, setFormValues] = useState(initialValues);
+  const [formErrors, setFormErrors] = useState({});
+  const [passwordStrength, setpasswordStrength] = useState("Lösenordets styrka:");
+  const [isSubmit, setIsSubmit] = useState(false);
 
-  async function signUp() {
-    // When the user clicks the button, check that all fields are filled in, and if so, create a new user. Otherwise, return an alert.
-    if (
-      document.querySelector("#verify-password").value != document.querySelector("#password").value ||
-      document.querySelector("#name").value.length < 3 ||
-      document.querySelector("#phone").value.length < 10 ||
-      document.querySelector("#email").value.length < 6 ||
-      document.querySelector("#password").value.length < 6
-    ) {
-      return alert("Please fill in all fields correctly! (Name must be at least 3 characters, phone number must be at least 10 characters, email must be at least 6 characters, password must be at least 6 characters)");
-    } else {
-      const response = await fetch(
-        "http://localhost:3000/api/users/newuser",
-        {
-          method: "POST",
-          mode: "cors",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: document.querySelector("#name").value,
-            phone: document.querySelector("#phone").value,
-            email: document.querySelector("#email").value,
-            password: document.querySelector("#password").value,
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+  };
 
-          }),
-        }
-      );
-      const data = await response.json();
-      if (data.message === "User created!") {
-        return alert("User created!");
-      } else if (data.message === "An account with that email is already in use!") {
-        return alert("An account with that email is already in use!");
-      } else {
-        return alert("Error creating user!");
-      }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormErrors(validate(formValues));
+    setIsSubmit(true);
+  };
+
+  useEffect(() => {
+    if (Object.keys(formErrors).length === 0 && isSubmit) {
+      postData(formValues);
+    }
+  }, [formErrors]);
+  const validate = (values) => {
+    const errors = {};
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    if (!values.name) {
+      errors.name = "Du måste ange ett fullständigt namn!";
+    }
+    if (!values.phone) {
+      errors.phone = "Du måste ange ett telefonnummer!";
+    } else if (values.phone.length < 10) {
+      errors.phone = "Ett telefonnummer måste vara minst 10 siffror!";
+    }
+    if (!values.email) {
+      errors.email = "Du måste ange en e-postadress!";
+    } else if (!regex.test(values.email)) {
+      errors.email = "Det här är inte en giltig e-postadress!";
+    }
+    if (!values.password) {
+      errors.password = "Du måste ange ett lösenord med minst 4 tecken!";
+    } else if (values.password.length < 4) {
+      errors.password = "Lösenordet måste vara minst 4 tecken långt!";
+    } else if (values.password.length > 20) {
+      errors.password = "Lösenordet får vara max 20 tecken långt!";
+    }
+    if (!values.verifyPassword) {
+      errors.verifyPassword = "Du måste ange samma lösenord igen!";
+    } else if (values.verifyPassword !== values.password) {
+      errors.verifyPassword = "Lösenordet överensstämmer inte!";
+    }
+    return errors;
+  };
+
+  function strengthCheck() {
+    if (formValues.password < 4) {
+      setpasswordStrength("Lösenordets styrka: Inte tillräcklig");
+    }
+    if (formValues.password.match(/^(?=.*[a-z]).{4,20}$/)) {
+      setpasswordStrength("Lösenordets styrka: Svagt");
+    }
+    if (formValues.password.match(/^(?=.*[a-z])(?=.*[A-Z]).{4,20}$/)) {
+      setpasswordStrength("Lösenordets styrka: Medelt");
+    }
+    if (formValues.password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,20}$/)) {
+      setpasswordStrength("Lösenordets styrka: Starkt");
+    }
+    if (formValues.password.match(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{4,20}$/)) {
+      setpasswordStrength("Lösenordets styrka: Mycket starkt");
     }
   }
 
-  // Password strength check.
-  function passwordStrength() {
-    const passwordInput = document.getElementById("password");
-    const StrengthIndicator =
-      document.querySelector("#strength-indicator");
+  async function postData(formValues) {
+    const response = await fetch("http://localhost:3000/api/users/newuser", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", },
+      body: JSON.stringify(formValues),
+    });
+    const data = await response.json();
+    console.log(data);
+  }
 
-    if (passwordInput.value.match(/^(?=.*[a-z]).{6,20}$/)) {
-      StrengthIndicator.textContent = "Password strength: Weak!";
-    }
-    if (passwordInput.value.match(/^(?=.*[a-z])(?=.*[A-Z]).{6,20}$/)) {
-      StrengthIndicator.textContent =
-        "Password strength: Medium!";
-    }
-    if (passwordInput.value.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/)) {
-      StrengthIndicator.textContent = "Password strength: Strong!";
-    }
-    if (
-      passwordInput.value.match(
-        /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,20}$/
-      )
-    ) {
-      StrengthIndicator.textContent = "Password strength: Very strong!";
-    }
-  };
-
-  // Render the signUp component.
   return (
-    <div className={styles["main-container-signinup"]}>
-      <div className={styles["main-container-signinup-content"]}>
-        <input id="name" type="text" placeholder="Your full name" />
-        <input id="phone" type="text" placeholder="Phone no." />
-        <input id="email" type="email" placeholder="Email address" />
-        <input onKeyUp={passwordStrength} id="password" type="password" placeholder="Password" />
-        <input id="verify-password" type="password" placeholder="Verify password" />
-        <p id="strength-indicator">Make sure to use a strong password.</p>
-        <button onClick={signUp}>Sign up</button>
-      </div>
+    <div className={styles["signup"]}>
+      <form onSubmit={handleSubmit}>
+        <div className="field">
+          <label>Ditt namn</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Förnamn + Efternamn"
+            value={formValues.name}
+            onChange={handleChange}
+          />
+        </div>
+        <p>{formErrors.name}</p>
+        <div className="field">
+          <label>Telefonnummer</label>
+          <input
+            type="number"
+            name="phone"
+            placeholder="+46"
+            value={formValues.phone}
+            onChange={handleChange}
+          />
+        </div>
+        <p>{formErrors.phone}</p>
+        <div className="field">
+          <label>E-post adress</label>
+          <input
+            type="text"
+            name="email"
+            placeholder="namn@domän.se"
+            value={formValues.email}
+            onChange={handleChange}
+          />
+        </div>
+        <p>{formErrors.email}</p>
+        <div className="field">
+          <label>Lösenord</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="(Minst 4 tecken.)"
+            value={formValues.password}
+            onChange={handleChange}
+            onKeyUp={strengthCheck}
+          />
+          <p>{passwordStrength}</p>
+        </div>
+        <p>{formErrors.password}</p>
+        <div className="field">
+          <label>Verifiera lösenord</label>
+          <input
+            type="password"
+            name="verifyPassword"
+            placeholder="(Ange lösenordet igen.)"
+            value={formValues.verifyPassword}
+            onChange={handleChange}
+          />
+        </div>
+        <p>{formErrors.verifyPassword}</p>
+        <button>Submit</button>
+      </form>
     </div>
   );
 }
