@@ -8,7 +8,7 @@ export default function signup() {
   const [passwordStrength, setpasswordStrength] = useState("Lösenordets styrka:");
   const [isSubmit, setIsSubmit] = useState(false);
 
-  // Handles input change.
+  // Handles input changes on submit.
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
