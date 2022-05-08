@@ -86,7 +86,7 @@ export default function signup() {
     });
     const data = await response.json();
     if (data.message === "User created!") {
-      window.location.href = "/login";
+      return window.location.href = "/login";
     } else {
       return alert(data.message);
     }
