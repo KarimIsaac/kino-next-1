@@ -85,10 +85,10 @@ export default function signup() {
       body: JSON.stringify(formValues),
     });
     const data = await response.json();
-    if (data.message === "User created") {
+    if (data.message === "User created!") {
       window.location.href = "/login";
     } else {
-      alert(data.message);
+      return alert(data.message);
     }
   }
 
