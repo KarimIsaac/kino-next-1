@@ -1,7 +1,4 @@
 import Head from "next/head";
-import Navbar from "../components/header/nav/Navbar";
-import Logo from "../components/header/Logo";
-import Banner from "../components/header/Banner";
 
 import styles from "../styles/Home.module.css";
 import UserLoginForm from "../components/userPages/Login/LogInForm";
