@@ -14,7 +14,7 @@ export default function LoginMeny({ _class }) {
 
       {userObj.user !== null 
       ? <MenyLink
-        _tag={"/test"}
+        _tag={"/my-page"}
         _innerText={userObj.user}
         _divClass={"login-meny-link"}
       />
