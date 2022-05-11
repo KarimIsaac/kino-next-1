@@ -2,9 +2,6 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../../styles/Movie.module.css";
 
-import Navbar from "../../components/header/Navbar";
-import Logo from "../../components/header/Logo";
-import Banner from "../../components/header/Banner";
 import RightSidebar from "../../components/RightSidebar";
 
 import connectDb from "../../DB/connectDb";
@@ -36,14 +33,6 @@ export default function Post({ movie, screenings }) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <header>
-        <nav>
-          <Logo />
-          <Navbar />
-          <Banner />
-        </nav>
-      </header>
 
       <main className={styles.main}>
         <div className={styles["main-container"]}>
@@ -78,9 +67,6 @@ export default function Post({ movie, screenings }) {
         </div>
       </main>
 
-      <footer className="footer">
-        <p>This is the footer</p>
-      </footer>
     </div>
   );
 }
