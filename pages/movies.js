@@ -1,9 +1,6 @@
 import Head from "next/head";
 import styles from "../styles/Movies.module.css";
 
-import Navbar from "../components/header/nav/Navbar";
-import Logo from "../components/header/Logo";
-import Banner from "../components/header/Banner";
 import LatestMovies from "../components/LatestMovies";
 import RightSidebar from "../components/RightSidebar";
 
