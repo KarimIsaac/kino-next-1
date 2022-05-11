@@ -4,13 +4,13 @@ import { LoginContext } from "../../contexts/loginContext.js";
 import Input from "./UserInput";
 
 export default function UserLoginForm() {
-  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setUserObj } = useContext(LoginContext);
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const data = { userName, password };
+    const data = { userEmail, password };
     const res = await fetch("/api/users", {
       method: "POST",
       headers: {
@@ -29,7 +29,7 @@ export default function UserLoginForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Input _label={"User Name: "} _setState={setUserName} />
+      <Input _label={"E-mail: "} _type="email" _setState={setUserEmail} />
       <Input
         _minLgth={4}
         _label={"password"}

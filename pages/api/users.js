@@ -7,14 +7,14 @@ import User from "../../DB/models/users";
 
 export default function loginChecker(req, res) {
   const cookie = new Cookies(req, res);
-  const { userName, password } = req.body;
+  const { userEmail, password } = req.body;
 
   return connectDb().then(async () => {
     let infromation;
     const sessionValue = uuid_V4();
     const user = await User.find();
     user.forEach((account) => {
-      if (account.name === userName && account.password === password) {
+      if (account.email === userEmail && account.password === password) {
         infromation = {
           user: account.name,
           key: sessionValue,
@@ -23,18 +23,14 @@ export default function loginChecker(req, res) {
       }
     });
 
-    if (infromation.login) {
+    if (infromation !== undefined) {
       cookie.set("_session", sessionValue);
-      res.json(infromation);
-      return res.status(200).end();
+      res.status(200).json(infromation);
     } else {
-      res
-        .status(401)
-        .send({
-          err: true,
-          message: "401: account do not exist!",
-        })
-        .end();
+      res.status(401).send({
+        err: true,
+        message: "401: account do not exist!",
+      });
     }
   });
 }
