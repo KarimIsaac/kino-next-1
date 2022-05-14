@@ -2,7 +2,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 
 import RightSidebar from "../components/RightSidebar";
-import SignUp from "../components/SignUp";
+import SignUp from "../components/Signup";
 
 export default function Home() {
   return (
@@ -20,10 +20,14 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles["main-container"]}>
           <div className={styles["main-container-content-article-small"]}>
-            <p>CREATE AN ACCOUNT</p>
+            <p>SKAPA ETT KONTO</p>
           </div>
             <SignUp />
         </div>
+
+        {/* <div className={styles["right-container"]}>
+          <RightSidebar />
+        </div> */}
       </main>
 
     </div>
