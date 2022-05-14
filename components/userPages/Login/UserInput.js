@@ -5,6 +5,7 @@ export default function UserInput({
   _minLgth,
   _ref,
   _setState,
+  _placeholder
 }) {
   function onChangeFunc(e) {
     _setState(e.target.value);
@@ -12,11 +13,11 @@ export default function UserInput({
 
   return (
     <div className="userInput-container">
-      <label htmlFor={_inputId}>  </label>
+      <label htmlFor={_inputId}>{_label}</label>
       <input
         id={_inputId}
         type={_type}
-        placeholder={_label}
+        placeholder={_placeholder}
         minLength={_minLgth}
         ref={_ref}
         onChange={(e) => onChangeFunc(e)}
@@ -29,5 +30,6 @@ export default function UserInput({
 UserInput.defaultProps = {
   _label: "Label:",
   _type: "text",
+  _placeholder: "type here",
   _minLgth: 1,
 };
