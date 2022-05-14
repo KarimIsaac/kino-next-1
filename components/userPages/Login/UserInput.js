@@ -30,6 +30,6 @@ export default function UserInput({
 UserInput.defaultProps = {
   _label: "Label:",
   _type: "text",
-  _placeholder: "type here",
+  _placeholder: "  Skriv här",
   _minLgth: 1,
 };

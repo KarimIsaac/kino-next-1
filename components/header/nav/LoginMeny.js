@@ -26,19 +26,19 @@ export default function LoginMeny() {
               signOutUser();
             }}
           >
-            sign out
+            Logga ut
           </button>
         </div>
       ) : (
         <div className={styles.utilites_link_container}>
           <MenyLink
             _tag={"/login"}
-            _innerText={"login"}
+            _innerText={"Logga In"}
             _divClass={"login-meny-link"}
           />
           <MenyLink
             _tag={"/signup"}
-            _innerText={"sign up"}
+            _innerText={"Skapa Konto"}
             _divClass={"login-meny-link"}
           />
         </div>
