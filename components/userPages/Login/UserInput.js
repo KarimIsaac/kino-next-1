@@ -12,10 +12,11 @@ export default function UserInput({
 
   return (
     <div className="userInput-container">
-      <label htmlFor={_inputId}> {_label} </label>
+      <label htmlFor={_inputId}>  </label>
       <input
         id={_inputId}
         type={_type}
+        placeholder={_label}
         minLength={_minLgth}
         ref={_ref}
         onChange={(e) => onChangeFunc(e)}

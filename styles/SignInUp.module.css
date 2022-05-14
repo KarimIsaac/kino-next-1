@@ -7,13 +7,21 @@
   align-items: center;
 }
 
-.main-container-signinup-content {
+.main-container-signinup-content,
+.main-container-login-content {
   margin: 5rem auto;
   width: 25rem;
   height: 310px;
   background-color: #f7efe9;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   text-align: center;
+}
+
+.main-container-login-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .main-container-signinup-content input:nth-child(1) {
@@ -25,7 +33,8 @@
   margin: 1rem auto 0rem auto;
 }
 
-.main-container-signinup-content button {
+.main-container-signinup-content button,
+.main-container-login-content button {
   width: 15rem;
   height: 3rem;
   background-color: #bb0000;

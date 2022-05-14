@@ -15,7 +15,12 @@ export default function LoginPage() {
       </Head>
 
       <main className={styles.main}>
-        <UserLoginForm />
+      <div className={styles["main-container"]}>
+          <div className={styles["main-container-content-article-small"]}>
+            <p>LOGIN TO AN ACCOUNT </p>
+          </div>  
+          <UserLoginForm />
+        </div>
       </main>
 
     </section>
