@@ -24,9 +24,6 @@ export default function Home() {
           </div>
             <SignUp />
         </div>
-        {/* <div className={styles["right-container"]}>
-          <RightSidebar />
-        </div> */}
       </main>
 
     </div>
