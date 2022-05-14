@@ -11,7 +11,10 @@ import Screenings from "../DB/models/screenings";
 // Get all movies and screenings from DB
 export async function getServerSideProps() {
   await connectDb();
-  const movies = await Movies.find({}, { _id: 0 }).lean();
+  const moviesUnsorted = await Movies.find({}, { _id: 0 }).lean();
+  const movies = moviesUnsorted.sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  );
   const screenings = await Screenings.find({}, { _id: 0 }).lean();
   return { props: { movies, screenings } };
 }
@@ -39,7 +42,6 @@ export default function MoviesPage({ movies, screenings }) {
           <RightSidebar screenings={screenings} movies={movies} />
         </div>
       </main>
-
     </div>
   );
 }
