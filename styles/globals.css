@@ -44,12 +44,13 @@ header {
 .menu-container{
   display: flex;
   flex-direction: column;
+  padding: 10px 0px;
   
 }
 
 .menu-container > div{
   width: 100%;
-  padding: 0 12%;
+  padding: 0 10%;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;

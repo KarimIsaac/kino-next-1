@@ -1,13 +1,15 @@
-.signup {
+.login {
   width: 100%;
   height: auto;
   background-color: #E7D0C0;
   display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
 
-.signup form,
-.login  form{
+.login form{
   margin: 2rem auto;
   width: 19rem;
   height: auto;
@@ -17,15 +19,7 @@
 }
 
 
-.login{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
-
-
-.signup label {
+.login label {
   display: block;
   text-align: left;
   margin-bottom: 0.3rem;
@@ -33,13 +27,13 @@
 
 }
 
-.signup p {
+.login p {
   font-size: 12px;
   color: #ac0000;
   text-align: left;
 }
 
-.signup input {
+.login input {
   border-radius: 5px;
   height: 2rem;
   width: 15rem;
@@ -47,7 +41,6 @@
 }
 
 
-.signup button,
 .login button{
   width: 15rem;
   height: 3rem;
@@ -59,9 +52,11 @@
   font-weight: bold;
   cursor: pointer;
   color: #ffffff;
+
+  margin-top: 15px;
 }
 
-.signup button:hover {
+.login button:hover {
   background-color: #ac0000;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 5px;
   color: #f5f5f5;

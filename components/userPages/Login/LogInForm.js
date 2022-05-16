@@ -1,5 +1,7 @@
 import { useState, useContext } from "react";
 import { LoginContext } from "../../contexts/loginContext.js";
+import styles from "../../../styles/LogIn.module.css";
+
 
 import Input from "./UserInput";
 
@@ -23,20 +25,24 @@ export default function UserLoginForm() {
     if (!Obj.err) {
       setUserObj({ ...Obj, logedIn: true });
     } else {
-      alert(Obj.message)
+      alert(Obj.message);
     }
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Input _label={"E-mail: "} _type="email" _setState={setUserEmail} />
-      <Input
-        _minLgth={4}
-        _label={"password"}
-        _type="password"
-        _setState={setPassword}
-      />
-      <button type="submit">login</button>
-    </form>
+    <div className={styles["login"]}>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <Input _label={"E-mail"} _type="email" _setState={setUserEmail} />
+          <Input
+            _minLgth={4}
+            _label={"Lössenord"}
+            _type="password"
+            _setState={setPassword}
+          />
+        </div>
+        <button type="submit">login</button>
+      </form>
+    </div>
   );
 }
