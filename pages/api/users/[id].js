@@ -1,4 +1,4 @@
-import connectDb from "../../../DB/connectDb";
+/* import connectDb from "../../../DB/connectDb";
 import User from "../../../DB/models/users";
 
 // Find a user with id from /api/users/[id].
@@ -25,6 +25,6 @@ export default async function handler(req, res) {
         // If error (Database unavailable), return 500.
         res.status(500).json({ message: "Error getting users!" });
     }
-}
+} */
 
 // THIS API ROUTE IS NOW OBSOLETE. WE CAN REMOVE THIS ROUTE IN THE FUTURE !!!!!!!!!!!!!!!!!!

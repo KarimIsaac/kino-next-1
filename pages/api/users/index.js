@@ -2,8 +2,8 @@
 import Cookies from "cookies";
 import { resolveHref } from "next/dist/shared/lib/router/router";
 import { v4 as uuid_V4 } from "uuid";
-import connectDb from "../../DB/connectDb";
-import User from "../../DB/models/users";
+import connectDb from "../../../DB/connectDb";
+import User from "../../../DB/models/users";
 
 export default function loginChecker(req, res) {
   const cookie = new Cookies(req, res);

@@ -1,4 +1,4 @@
-import connectDb from "../../../DB/connectDb";
+/* import connectDb from "../../../DB/connectDb";
 import Movies from "../../../DB/models/Movies";
 
 // Find a single movie with id from /api/movies/[id].
@@ -18,4 +18,6 @@ export default async function handler(req, res) {
         // If error (Database unavailable), return 500.
         res.status(500).json({ message: "Error getting movie!" });
     }
-}
+} */
+
+// THIS API ROUTE IS NOW OBSOLETE. WE CAN REMOVE THIS ROUTE IN THE FUTURE !!!!!!!!!!!!!!!!!!
