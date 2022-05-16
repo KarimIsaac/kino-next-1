@@ -21,13 +21,7 @@ export default function LoginMeny() {
             _innerText={userObj.user}
             _divClass={"login-meny-link"}
           />
-          <button
-            onClick={() => {
-              signOutUser();
-            }}
-          >
-            Logga ut
-          </button>
+          <button onClick={signOutUser}>Logga ut</button>
         </div>
       ) : (
         <div className={styles.utilites_link_container}>
