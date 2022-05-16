@@ -1,7 +1,7 @@
 import styles from "../styles/SignUp.module.css";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
-export default function signup() {
+export default function Signup() {
   const initialValues = { name: "", phone: "", email: "", password: "", verifyPassword: "" };
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
@@ -26,7 +26,7 @@ export default function signup() {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       postData(formValues);
     }
-  }, [formErrors]);
+  }, [formErrors, formValues, isSubmit]);
   const validate = (values) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
