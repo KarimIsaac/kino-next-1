@@ -2,11 +2,6 @@ import connectDb from "../../../DB/connectDb";
 import User from "../../../DB/models/users";
 import bcrypt from "bcryptjs";
 
-function bCryptTest(password) {
-  const salt = bcrypt.genSaltSync(10);
-  return bcrypt.hashSync(password, salt);
-}
-
 // Route for creating a new user /api/users/newuser.
 export default function userHandler(req, res) {
   if (req.method === "POST") {
