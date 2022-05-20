@@ -1,9 +1,9 @@
 //TODO: remove this api an connect to the MongoDB database at Login with ServerSideProps();
 import Cookies from "cookies";
-import { resolveHref } from "next/dist/shared/lib/router/router";
 import { v4 as uuid_V4 } from "uuid";
 import connectDb from "../../../DB/connectDb";
 import User from "../../../DB/models/users";
+import bcrypt from "bcryptjs";
 
 export default function loginChecker(req, res) {
   const cookie = new Cookies(req, res);
@@ -14,9 +14,14 @@ export default function loginChecker(req, res) {
     const sessionValue = uuid_V4();
     const user = await User.find();
     user.forEach((account) => {
-      if (account.email === userEmail && account.password === password) {
+      if (
+        account.email === userEmail &&
+        !!bcrypt.compareSync(password, account.password)
+      ) {
         infromation = {
           user: account.name,
+          email: account.email,
+          id: account.id,
           key: sessionValue,
           login: true,
         };

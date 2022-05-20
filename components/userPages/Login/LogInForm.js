@@ -36,7 +36,7 @@ export default function UserLoginForm() {
           <Input _label={"E-mail"} _type="email" _setState={setUserEmail} />
           <Input
             _minLgth={4}
-            _label={"Lössenord"}
+            _label={"Lösenord"}
             _type="password"
             _setState={setPassword}
           />
